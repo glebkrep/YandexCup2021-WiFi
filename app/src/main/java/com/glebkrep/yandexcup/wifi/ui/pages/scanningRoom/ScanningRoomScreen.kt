@@ -16,9 +16,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.pointerInteropFilter
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.glebkrep.yandexcup.wifi.R
 import com.glebkrep.yandexcup.wifi.data.Scan
 import com.glebkrep.yandexcup.wifi.ui.pages.ScanningRoomVM
 import com.glebkrep.yandexcup.wifi.utils.Debug
@@ -32,12 +34,7 @@ fun ScanningRoomScreen(borderPath: Path, homePageVM: ScanningRoomVM = viewModel(
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = "Теперь определим сколько места ты занимаешь в комнате. \n" +
-                    "Нажимай '+' и '-', пока синий кружочек не будет занимать в комнате " +
-                    "столько же места сколько и ты.\n\n" +
-                    "Передвигай кружочек, переходи на эту точку в комнате и нажимай 'сканировать' " +
-                    "чтобы отсканировать скорость соединения в этой точке\n\n" +
-                    "Продолжай пока вся площадь не будет отсканирована",
+            text = stringResource(id = R.string.scanning_guide),
             textAlign = TextAlign.Center
         )
 
@@ -129,7 +126,7 @@ fun ScanningCanvas(
         }
         drawCircle(
             color = Color.LightGray,
-            radius = radius*personToScanZoneMultiplier,
+            radius = radius * personToScanZoneMultiplier,
             center = personOffset,
             alpha = 0.5f
         )

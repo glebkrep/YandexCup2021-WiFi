@@ -14,8 +14,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.pointerInteropFilter
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.glebkrep.yandexcup.wifi.R
 import com.glebkrep.yandexcup.wifi.utils.Debug
 
 @Composable
@@ -32,22 +34,31 @@ fun DrawingRoomScreen(drawingFinished: (Path) -> (Unit)) {
             .fillMaxSize()
             .background(Color.LightGray)
     ) {
-        Text("Нарисуйте план комнаты, которую желаете отсканировать",Modifier.padding(16.dp),textAlign = TextAlign.Center)
+        Text(
+            stringResource(R.string.draw_room_plan),
+            Modifier.padding(16.dp),
+            textAlign = TextAlign.Center
+        )
         DrawingCanvas(colorPath = bordersPath, id = id) { path ->
             id += 1
             bordersPath = path
         }
-        Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth().padding(16.dp)) {
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
             Button(onClick = {
                 bordersPath = Path()
             }) {
-                Text(text = "Очистить")
+                Text(text = stringResource(R.string.clear))
             }
 
             Button(onClick = {
                 drawingFinished.invoke(bordersPath)
             }) {
-                Text(text = "Сохранить комнату")
+                Text(text = stringResource(R.string.save_room))
             }
         }
     }

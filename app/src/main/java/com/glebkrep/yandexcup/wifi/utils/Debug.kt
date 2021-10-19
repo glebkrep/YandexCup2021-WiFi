@@ -4,6 +4,6 @@ import android.util.Log
 
 object Debug {
     fun log(any: Any?) {
-        Log.e("Debug:::", any.toString())
+        Log.e("Wifi.Debug:::", any.toString())
     }
 }
